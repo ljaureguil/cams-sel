@@ -124,11 +124,11 @@ video {
 </head>
 <body>
 <div class="display-cover">
-    <video id="vid" autoplay></video>
+    <video autoplay></video>
     <canvas class="d-none"></canvas>
 
     <div class="video-options">
-        <select name="" id="h" oninput="constraints.deviceId={vid.stop(); exact: this.value};alert(this.value);cameraOptions=this.value;startStream(constraints);" class="custom-select">
+        <select name="" id="h" oninput="constraints.deviceId={ exact: this.value};alert(this.value);cameraOptions=this.value;startStream(constraints);" class="custom-select">
             <option value="">Select camera</option>
         </select>
     </div>
@@ -189,8 +189,8 @@ const getCameraSelection = async () => {
 play.onclick = () => {
   if (streamStarted) {
     video.play();
- //   play.classList.add('d-none');
- //   pause.classList.remove('d-none');
+    play.classList.add('d-none');
+    pause.classList.remove('d-none');
     return;
   }
   if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
@@ -212,9 +212,9 @@ const startStream = async (constraints) => {
 
 const handleStream = (stream) => {
   video.srcObject = stream;
- // play.classList.add('d-none');
- // pause.classList.remove('d-none');
-//  screenshot.classList.remove('d-none');
+  play.classList.add('d-none');
+  pause.classList.remove('d-none');
+  screenshot.classList.remove('d-none');
   streamStarted = true;
 };
 
