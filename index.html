@@ -200,6 +200,7 @@ play.onclick = () => {
         exact: cameraOptions.value
       }
     };
+	  alert(JSON.stringify(updatedConstraints))
     startStream(updatedConstraints);
   }
 };
