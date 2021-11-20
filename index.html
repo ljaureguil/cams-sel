@@ -128,7 +128,7 @@ video {
     <canvas class="d-none"></canvas>
 
     <div class="video-options">
-        <select name="" id="h" oninput="constraints.deviceId=this.value;alert(this.value);cameraOptions=this.value;startStream(constraints);" class="custom-select">
+        <select name="" id="h" oninput="constraints.deviceId={ exact: this.value};alert(this.value);cameraOptions=this.value;startStream(constraints);" class="custom-select">
             <option value="">Select camera</option>
         </select>
     </div>
