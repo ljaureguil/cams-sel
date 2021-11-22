@@ -128,7 +128,7 @@ video {
     <canvas class="d-none"></canvas>
 
     <div class="video-options">
-        <select name="" id="h" oninput="constraints.deviceId={ exact: this.value};alert(this.value);cameraOptions=this.value;startStream(constraints);" class="custom-select">
+        <select name="" id="" class="custom-select">
             <option value="">Select camera</option>
         </select>
     </div>
@@ -136,9 +136,9 @@ video {
     <img class="screenshot-image d-none" alt="">
 
     <div class="controls">
-        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle">Play</i></button>
-        <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause">Pause</i></button>
-        <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image">Imagen</i></button>
+        <button class="btn btn-danger play" title="Play"><i data-feather="play-circle"></i></button>
+        <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
+        <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button>
     </div>
 </div>
 
@@ -160,7 +160,7 @@ let streamStarted = false;
 
 const [play, pause, screenshot] = buttons;
 
-const constraints = {
+var constraints = {
   video: {
     width: {
       min: 1280,
@@ -194,19 +194,23 @@ play.onclick = () => {
     return;
   }
   if ('mediaDevices' in navigator && navigator.mediaDevices.getUserMedia) {
-    const updatedConstraints = {
-      ...constraints,
-      deviceId: {
-        exact: cameraOptions.value
-      }
-    };
-	  alert(JSON.stringify(updatedConstraints))
+    alert(cameraOptions.value)
+//    const updatedConstraints = {
+ //     ...constraints,
+  //    deviceId: {
+   //     exact: cameraOptions.value
+    //  }
+   // };
+   constraints.deviceId={exact: cameraOptions.value}
+    
+ //  constraints.deviceId={exact: cameraOptions.value}
     startStream(updatedConstraints);
   }
 };
 
 const startStream = async (constraints) => {
   const stream = await navigator.mediaDevices.getUserMedia(constraints);
+
   handleStream(stream);
 };
 
